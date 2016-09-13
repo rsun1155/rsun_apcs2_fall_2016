@@ -110,12 +110,15 @@ public class Calculate {
 	public static int exponent(double numA, int numB) { 
 		for (int count = 1, double numA, int numB; count >=numB; count ++) { 
 			double answer = numA * numA;  
+			return(answer);
 		}
 	}
 	public static int factorial(int numA) {
-		int count = 0;
-		while (numA>0);
-		int next = numA - count;
+		while(numA > 0) {
+		int answer = numA * (numA - 1);
+		
+		
+		
 		
 		
 			
