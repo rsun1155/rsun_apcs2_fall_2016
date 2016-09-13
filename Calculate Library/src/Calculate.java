@@ -98,14 +98,15 @@ public class Calculate {
 		}
 	}
 	public static double round2(double num) { 
-		double num1 = (num + 0.05);
+		double num1 = (num + 0.005);
 		
-		int numa = (int)(num*100.0); 
-		double answer = numa/100.0; 
+		int numA = (int)(num1*100.0); 
+		double answer = numA/100.0; 
 		return(answer);
-	} 
 	}
-} 
+}
+
+	/*
 	public static int exponent(double numA, int numB) { 
 		for (int count = 1, double numA, int numB; count >=numB; count ++) { 
 			double answer = numA * numA;  
@@ -122,7 +123,10 @@ public class Calculate {
 				
 			
 		}
-	}
+		*/
+	
+
+	
 		
 		
 
