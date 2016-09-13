@@ -101,18 +101,27 @@ public class Calculate {
 		double num1 = (num + 0.05);
 		
 		int numa = (int)(num*100.0); 
-		
-		System.out.println(numa);
 		double answer = numa/100.0; 
-		
-		System.out.println(answer);
 		return(answer);
 	} 
-	
-	public static void main(String[] args){
-		round2(12.526);
-		System.out.println((int)(12.7));
 	}
 } 
+	public static int exponent(double numA, int numB) { 
+		for (int count = 1, double numA, int numB; count >=numB; count ++) { 
+			double answer = numA * numA;  
+		}
+	}
+	public static int factorial(int numA) {
+		int count = 0;
+		while (numA>0);
+		int next = numA - count;
+		
+		
+			
+				
+				
+			
+		}
+	}
 		
 		
