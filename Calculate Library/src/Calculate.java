@@ -121,10 +121,15 @@ public class Calculate {
 		} 
 		return(answer); 
 		}
-		
-		
-		
+	public static boolean isPrime(int num) {
+		int div = 1;
+		while(div > 0) { 
+			if (Calculate.isDivisibleBy(num, div)) { 
+				
+			}
 			
+		}
+	}
 				
 	}	
 			
