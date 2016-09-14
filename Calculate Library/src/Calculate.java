@@ -104,26 +104,32 @@ public class Calculate {
 		double answer = numA/100.0; 
 		return(answer);
 	}
-}
 
-	/*
+
+	
 	public static int exponent(double numA, int numB) { 
-		for (int count = 1, double numA, int numB; count >=numB; count ++) { 
-			double answer = numA * numA;  
+			int answer = 1; 
+		for (int count = 1; count <=numB; count ++) { 
+			answer = (int)(numA * answer);  
 		}
+			return(answer);
 	}
 	public static int factorial(int numA) {
-		int count = 0;
-		while (numA>0);
-		int next = numA - count;
-		
-		
-			
-				
-				
-			
+		int answer = 1; 
+		for (int count = 1; count <= numA; count++) {
+			answer = count * answer;
+		} 
+		return(answer); 
 		}
-		*/
+		
+		
+		
+			
+				
+	}	
+			
+		
+		
 	
 
 	
