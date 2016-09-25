@@ -1,4 +1,4 @@
-// Ryan Sun 2nd period 9 24 16 This is a math library containing methods that do math without using class Math.
+// Ryan Sun 9 24 16 This is a math library containing methods that do math without using class Math.
 public class Calculate {
 	public static int square(int number) {
 		int answer;
