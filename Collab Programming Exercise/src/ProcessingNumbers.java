@@ -18,19 +18,27 @@ public class ProcessingNumbers {
 		} else {
 			evenTotal = 0;
 		}
-		int nextInt = userInput.nextInt();
-		if (nextInt > max) {
-			max = nextInt;
-		} else if (nextInt < min) {
-			min = nextInt;
-		}
-		if (nextInt % 2 == 0) {
-			evenTotal += nextInt;
-			if (nextInt > maxEven) {
-				maxEven = nextInt;
+		for (int i = 1; i < x; i++) {
+			int nextInt = userInput.nextInt();
+			if (nextInt > max) {
+				max = nextInt;
+			} else if (nextInt < min) {
+				min = nextInt;
+			}
+			if (nextInt % 2 == 0) {
+				evenTotal += nextInt;
+				if (nextInt > maxEven) {
+					maxEven = nextInt;
+				}
 			}
 		}
 
-		System.out.println(max + ", " + min + ", " + evenTotal + ", " + maxEven);
+		System.out.println("The minimum is " + min); 
+		System.out.println("The maximum is " + max);
+		System.out.println("The sum of all the even numbers is " + evenTotal);
+		System.out.println("The largest even number is " + maxEven);
+		userInput.close();
+
 	}
+
 }
