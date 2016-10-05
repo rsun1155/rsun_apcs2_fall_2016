@@ -1,65 +1,67 @@
 // Ryan Sun 9 24 16 This is a math library containing methods that do math without using class Math.
 public class Calculate {
+	// This method takes an integer "number" and returns the square of that integer.
 	public static int square(int number) {
 		int answer;
 		answer = number * number;
 		return (answer);
 	}
-
+	// This method takes an integer "number" and returns the cube of that integer.
 	public static int cube(int number) {
 		int answer;
 		answer = number * number * number;
 		return (answer);
 	}
-
-	public static double average(double number, double num) {
+	// This method takes two doubles "num1" and "num2" and returns the average of those two doubles
+	public static double average(double num1, double num2) {
 		double answer;
-		answer = (number + num) / 2;
+		answer = (num1 + num2) / 2;
 		return (answer);
 	}
-
-	public static double average(double number, double num, double numB) {
+	// This method takes three doubles "num1", "num2" and "num3" and returns the average of those three doubles.
+	public static double average(double num1, double num2, double num3) {
 		double answer;
-		answer = (number + num + numB) / 3;
+		answer = (num1 + num2 + num3) / 3;
 		return (answer);
 	}
-
+	// This method takes a double "radian" and returns that double converted into degrees. 
 	public static double toDegrees(double radian) {
 		double answer;
 		answer = (radian * (180 / 3.14159));
 		return (answer);
 	}
-
+	// This method takes a double "degrees" and returns that double converted into radians. 
 	public static double toRadians(double degrees) {
 		double answer;
 		answer = (degrees * (3.14159 / 180));
 		return (answer);
-	}
-
+	} 
+	// This method takes three doubles "varA", "varB", and "varC" and returns the discriminant value as if those three doubles were plugged into the quadratic formula. 
 	public static double discriminant(double varA, double varB, double varC) {
 		double answer;
 		answer = (varB * varB - 4 * (varA) * (varC));
 		return (answer);
 	}
-
+	// This method receives three integers "whole", "numerator", and "denominator" and returns an improper fraction using those three values. 
 	public static String toImproperFrac(int whole, int numerator, int denominator) {
 		String answer;
 		answer = ("\"" + (whole * denominator + numerator) + "/" + denominator + "\"");
 		return (answer);
 	}
-
+	
+	// This method converts an improper fraction into a mixed number.
 	public static String toMixedNum(int numerator, int denominator) {
 		String answer;
 		answer = ("\"" + numerator / denominator + " " + numerator % denominator + "/" + denominator + "\"");
 		return (answer);
 	}
-
+	// Given the coefficients and a variable of two polynomials, this method uses the foil method and returns the product of those two polynomials
 	public static String foil(int numA, int numB, int numC, int numD, String varA) {
 		String answer;
 		answer = (numA * numC + " " + varA + "^2" + "+" + ((numA * numD) + (numB * numC)) + varA + "+" + numB * numD);
 		return (answer);
 	}
-
+	// This method determines whether or not a dividend can be divided evenly by a divisor.
 	// pre: divisor != 0
 	// post: Returns whether a dividend is divisible by a divisor.
 	public static boolean isDivisibleBy(int dividend, int divisor) {
@@ -73,39 +75,38 @@ public class Calculate {
 		}
 
 	}
-
+	// This method returns the absolute value of a given double. 
 	public static double absValue(double num) {
 		double answer;
 		if (num >= 0) {
 			answer = num;
-			return (answer);
 		} else {
 			answer = (num * -1);
-			return (answer);
 		}
+			return answer; 
 	}
-
-	public static int max(int numA, int numB) {
+	// This method returns the greater of two numbers
+	public static int max(int num1, int num2) {
 		int answer;
-		if (numA > numB) {
-			answer = numA;
+		if (num1 > num2) {
+			answer = num1;
 			return (answer);
 		} else {
-			answer = numB;
-			return (numB);
+			answer = num2;
+			return (num2);
 		}
 	}
-
-	public static double max(double numA, double numB, double numC) {
-		if (numA > numB && numA > numB) {
-			return (numA);
-		} else if (numB > numA && numB > numC) {
-			return (numB);
+	//This method returns the greatest of three numbers
+	public static double max(double num1, double num2, double num3) {
+		if (num1 > num2 && num1 > num2) {
+			return (num1);
+		} else if (num2 > num1 && num2 > num3) {
+			return (num2);
 		} else {
-			return (numC);
+			return (num3);
 		}
 	}
-
+	//This method returns the smaller of two numbers
 	public static int min(int num1, int num2) {
 		if (num1 > num2) {
 			return (num2);
@@ -113,7 +114,7 @@ public class Calculate {
 			return (num1);
 		}
 	}
-
+	//This method returns a double rounded to two decimal places
 	public static double round2(double num) {
 		double num1 = (num + 0.005);
 
@@ -121,7 +122,6 @@ public class Calculate {
 		double answer = numA / 100.0;
 		return (answer);
 	}
-
 	// pre: numB >= 0
 	// post : returns a number num raised to an exponent exp.
 	public static int exponent(double num, int exp) {
@@ -134,28 +134,27 @@ public class Calculate {
 		}
 		return (answer);
 	}
-
 	// pre: n>=0
 	// post: returns numA factorial
-	public static int factorial(int numA) {
-		if (numA < 0) {
+	public static int factorial(int num) {
+		if (num < 0) {
 			throw new IllegalArgumentException("You cannot take the factorial of a negative");
 		}
 		int count = 0;
 		int result = 1;
-		while (numA - count > 0) {
-			result *= numA - count;
+		while (num - count > 0) {
+			result *= num - count;
 			count++;
 		}
 		return (result);
 	}
-
-	public static boolean isPrime(int varA) {
+	//This method determines whether a number "num" is prime or not.
+	public static boolean isPrime(int num) {
 		int count = 2;
 		boolean outcome = false;
 		boolean found = false;
-		while ((count < varA) && (!found)) {
-			outcome = Calculate.isDivisibleBy(varA, count);
+		while ((count < num) && (!found)) {
+			outcome = Calculate.isDivisibleBy(num, count);
 			if (outcome) {
 				found = true;
 				count++;
@@ -163,7 +162,7 @@ public class Calculate {
 		}
 		return !found;
 	}
-
+	//This method returns the greatest common factor of two numbers. 
 	public static int gcf(int numA, int numB) {
 		int count = 1;
 		int factor = 0;
@@ -176,8 +175,9 @@ public class Calculate {
 		return (factor);
 	}
 
+	
 	// pre: numX >= 0
-	// pre: Returns the square root of a number numX
+	// post: Returns the square root of a number numX
 	public static double sqrt(double numX) {
 		if (numX < 0) {
 			throw new IllegalArgumentException("Can't take the square root of a negative");
@@ -208,7 +208,10 @@ public class Calculate {
 		Calculate.round2(rootB);
 		if (rootA == rootB) {
 			output = String.valueOf(rootA);
-		} else {
+		} else if (rootA > rootB) {
+			output = String.valueOf(rootB) + " and " + String.valueOf(rootA);
+		}
+		else {
 			output = String.valueOf(rootA) + " and " + String.valueOf(rootB);
 		}
 		return (output);
