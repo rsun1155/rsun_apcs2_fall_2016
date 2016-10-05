@@ -24,15 +24,15 @@ public class Calculate {
 		return (answer);
 	}
 
-	public static double toDegrees(double number) {
+	public static double toDegrees(double radian) {
 		double answer;
-		answer = (number * (180 / 3.14159));
+		answer = (radian * (180 / 3.14159));
 		return (answer);
 	}
 
-	public static double toRadians(double number) {
+	public static double toRadians(double degrees) {
 		double answer;
-		answer = (number * (3.14159 / 180));
+		answer = (degrees * (3.14159 / 180));
 		return (answer);
 	}
 
@@ -42,15 +42,15 @@ public class Calculate {
 		return (answer);
 	}
 
-	public static String toImproperFrac(int numA, int numB, int numC) {
+	public static String toImproperFrac(int whole, int numerator, int denominator) {
 		String answer;
-		answer = ("\"" + (numA * numC + numB) + "/" + numC + "\"");
+		answer = ("\"" + (whole * denominator + numerator) + "/" + denominator + "\"");
 		return (answer);
 	}
 
-	public static String toMixedNum(int numA, int numB) {
+	public static String toMixedNum(int numerator, int denominator) {
 		String answer;
-		answer = ("\"" + numA / numB + " " + numA % numB + "/" + numB + "\"");
+		answer = ("\"" + numerator / denominator + " " + numerator % denominator + "/" + denominator + "\"");
 		return (answer);
 	}
 
@@ -74,13 +74,13 @@ public class Calculate {
 
 	}
 
-	public static double absValue(double numA) {
+	public static double absValue(double num) {
 		double answer;
-		if (numA >= 0) {
-			answer = numA;
+		if (num >= 0) {
+			answer = num;
 			return (answer);
 		} else {
-			answer = (numA * -1);
+			answer = (num * -1);
 			return (answer);
 		}
 	}
