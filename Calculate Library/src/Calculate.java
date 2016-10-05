@@ -204,6 +204,8 @@ public class Calculate {
 
 		double rootA = ((-1 * (double) varB) + Calculate.sqrt(Calculate.discriminant(varA, varB, varC))) / (2 * varA);
 		double rootB = ((-1 * (double) varB) - Calculate.sqrt(Calculate.discriminant(varA, varB, varC))) / (2 * varA);
+		Calculate.round2(rootA);
+		Calculate.round2(rootB);
 		if (rootA == rootB) {
 			output = String.valueOf(rootA);
 		} else {
