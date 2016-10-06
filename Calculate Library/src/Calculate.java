@@ -118,8 +118,8 @@ public class Calculate {
 	public static double round2(double num) {
 		double num1 = (num + 0.005);
 
-		int numA = (int) (num1 * 100.0);
-		double answer = numA / 100.0;
+		int numA = (int) (num1 * 100.00);
+		double answer = numA / 100.00;
 		return (answer);
 	}
 	// pre: numB >= 0
