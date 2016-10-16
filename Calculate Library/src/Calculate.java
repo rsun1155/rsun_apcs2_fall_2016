@@ -182,9 +182,9 @@ public class Calculate {
 		if (numX < 0) {
 			throw new IllegalArgumentException("Can't take the square root of a negative");
 		}
-		numX = numX * 10000;
+		numX = numX * 10000; //Tries to prevent rounding errors. 
 		double count = 0;
-		while (Calculate.square((int) count) < numX) {
+		while (Calculate.square((int) count) < numX) { //by casting to int it is easy to write a loop to find the root. 
 			count++;
 		}
 		count = (double) count / 100.00;
@@ -195,24 +195,24 @@ public class Calculate {
 	// post: this method returns the real roots of a quadratic expression
 	public static String quadForm(int varA, int varB, int varC) {
 		if (varA == 0) {
-			throw new IllegalArgumentException("This is not a quadratic expression, just solve for x.");
+			throw new IllegalArgumentException("This is not a quadratic expression, just solve for x."); //makes sure that a quadratic is input
 		}
 		String output;
-		if (Calculate.discriminant(varA, varB, varC) <= 0) {
+		if (Calculate.discriminant(varA, varB, varC) <= 0 || ((Calculate.square(varB) - (4*varA*varC)) < 0)) { //Sets the output "no real roots"
 			output = "no real roots";
-		}
-
+		} else {
 		double rootA = ((-1 * (double) varB) + Calculate.sqrt(Calculate.discriminant(varA, varB, varC))) / (2 * varA);
 		double rootB = ((-1 * (double) varB) - Calculate.sqrt(Calculate.discriminant(varA, varB, varC))) / (2 * varA);
-		Calculate.round2(rootA);
-		Calculate.round2(rootB);
+		rootA = Calculate.round2(rootA);
+		rootB = Calculate.round2(rootB);
 		if (rootA == rootB) {
 			output = String.valueOf(rootA);
 		} else if (rootA > rootB) {
-			output = String.valueOf(rootB) + " and " + String.valueOf(rootA);
+			output = String.valueOf(rootB) + " and " + String.valueOf(rootA); 
 		}
 		else {
 			output = String.valueOf(rootA) + " and " + String.valueOf(rootB);
+		}
 		}
 		return (output);
 	}
