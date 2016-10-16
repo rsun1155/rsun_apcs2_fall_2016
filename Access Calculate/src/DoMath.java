@@ -6,5 +6,6 @@ public class DoMath {
 		System.out.println(Calculate.gcf(75, 60));
 		System.out.println(Calculate.round2(34.397));
 		System.out.println(Calculate.quadForm(3, 4, 5));
+		System.out.println("up out");
 	}
 }
