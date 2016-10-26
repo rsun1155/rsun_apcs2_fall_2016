@@ -6,5 +6,6 @@ public class DoMath {
 		System.out.println(Calculate.gcf(75, 60));
 		System.out.println(Calculate.round2(28.998));
 		System.out.println(Calculate.quadForm(4, 30, 4));
+		//I can't pull for some reason 
 	}
 }
