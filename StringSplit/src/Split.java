@@ -14,7 +14,7 @@ public class Split
 		
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		
-		
+		 
 	}
 		//Your task:
 		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
