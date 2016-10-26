@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Split 
 {
 
@@ -18,10 +20,18 @@ public class Split
 		System.out.println(split [0]);
 		split = "I really like really red apples".split("really");
 		System.out.println(split[2]);
+		System.out.println(Arrays.toString(split));
 		split = "I reallyreally like apples".split("really"); 
 		System.out.println(split[(split.length-1)]);
+		split = "I really do not really kinda sorta really now".split("really");
+		System.out.println(Arrays.toString(split));
+		System.out.println(split[2]);
 		System.out.println(sandwich("applespineapplesbreadlettustomatobacomayohambreadcheese")); 
 		System.out.println(sandwich("breadbayleafstrawberrybreadcheesemayomustardkiwibreadmelonbananacucumberbread"));
+		System.out.println(sandwich("bananabreadisgoudacheesebishoppawnkingknightbreadcumincheddarkiwibreadtasticbreadslime"));
+		System.out.println(sandwich("breadlettucebaconchilibread"));
+		System.out.println(sandwich("cucumberbreadcheesebread"));
+		System.out.println(sandwich("kiwibread"));
 		
 				
 		 
@@ -31,9 +41,26 @@ public class Split
 		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 		*/
-		public static String sandwich(String ingredients) {
-			String [] ingredientsArray = ingredients.split("bread");
-			return(ingredientsArray[ingredientsArray.length/2]);
+		public static void sandwich(String foods)
+		{
+			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread"))
+			{
+				if (foods.lastIndexOf("bread") != foods.indexOf("bread") + 5) 
+				{
+				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread"));
+				String [] ingredients = foods.split("bread");
+				System.out.println(ingredients[ingredients.length/2]);
+				
+				}
+				else
+				{
+					System.out.println("That's w);
+				}
+				
+			}
+			else {
+				throw new IllegalArgumentException("Get more bread please.");
+			}
 		}
 		
 		//Your task pt 2:
