@@ -32,7 +32,7 @@ public class Split
 		sandwich(ingredients);
 		String ingredientes = "apples pineapples bread lettus bread kiwi";
 		sandwichWSpaces(ingredientes);
-		ingredientes = "bread bread bread bread";
+		ingredientes = "bread kiwi bread duck bread muffin bread";
 		sandwichWSpaces(ingredientes);
 		
 				
@@ -57,7 +57,8 @@ public class Split
 			}
 		}
 		
-		//Your task pt 2:
+
+	//Your task pt 2:
 		/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
 		 * use String.split to split up the sandwich at the spaces, " ", and return what's in the middle of the sandwich and ignores what's on the outside
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
