@@ -1,5 +1,4 @@
 import java.util.Arrays;
-
 public class Split 
 {
 
@@ -26,12 +25,15 @@ public class Split
 		split = "I really do not really kinda sorta really now".split("really");
 		System.out.println(Arrays.toString(split));
 		System.out.println(split[2]);
-		System.out.println(sandwich("applespineapplesbreadlettustomatobacomayohambreadcheese")); 
-		System.out.println(sandwich("breadbayleafstrawberrybreadcheesemayomustardkiwibreadmelonbananacucumberbread"));
-		System.out.println(sandwich("bananabreadisgoudacheesebishoppawnkingknightbreadcumincheddarkiwibreadtasticbreadslime"));
-		System.out.println(sandwich("breadlettucebaconchilibread"));
-		System.out.println(sandwich("cucumberbreadcheesebread"));
-		System.out.println(sandwich("kiwibread"));
+		String ingredients = "breadbread.";
+		sandwich(ingredients);
+		ingredients = "breadstrawberrykiwilimebreadduck";
+		ingredients = "breadbreadbreadbread";
+		sandwich(ingredients);
+		String ingredientes = "apples pineapples bread lettus bread kiwi";
+		sandwichWSpaces(ingredientes);
+		ingredientes = "bread bread bread bread";
+		sandwichWSpaces(ingredientes);
 		
 				
 		 
@@ -43,23 +45,15 @@ public class Split
 		*/
 		public static void sandwich(String foods)
 		{
-			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread"))
+			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +5)
 			{
-				if (foods.lastIndexOf("bread") != foods.indexOf("bread") + 5) 
-				{
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread"));
 				String [] ingredients = foods.split("bread");
 				System.out.println(ingredients[ingredients.length/2]);
 				
-				}
-				else
-				{
-					System.out.println("That's w);
-				}
-				
 			}
 			else {
-				throw new IllegalArgumentException("Get more bread please.");
+				System.out.println("Fix your sandwich please.");
 			}
 		}
 		
@@ -69,7 +63,18 @@ public class Split
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 		*/
 
-		
+		public static void sandwichWSpaces(String foods) {
+			foods.trim(); 
+			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +6)
+			{
+				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread")); 
+				String [] ingredients = foods.split(" ");
+				System.out.println(ingredients[(ingredients.length)/2]);
+			}
+			else {
+				System.out.println("Please make sure that your sandwich is in order.");
+			}
+		}
 
 	
 
