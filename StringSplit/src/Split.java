@@ -43,10 +43,11 @@ public class Split
 		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 		*/
+	//Use a while loop to cycle through the pairs of bread. Keep substringing until we only have two pieces. 
 		public static void sandwich(String foods)
 		{
 			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +5)
-			{
+			{ 
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread"));
 				String [] ingredients = foods.split("bread");
 				System.out.println(ingredients[ingredients.length/2]);
@@ -66,11 +67,13 @@ public class Split
 
 		public static void sandwichWSpaces(String foods) {
 			foods.trim(); 
-			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +6)
+			if (foods.indexOf("bread") >= 0 &&  
+					foods.lastIndexOf("bread") != foods.indexOf("bread") 
+					&& foods.lastIndexOf("bread") != foods.indexOf("bread") +6) //I tested everything
 			{
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread")); 
 				String [] ingredients = foods.split(" ");
-				System.out.println(ingredients[(ingredients.length)/2]);
+				System.out.println(ingredients[(ingredients.length)/2]); //Fix this part
 			}
 			else {
 				System.out.println("Please make sure that your sandwich is in order.");
