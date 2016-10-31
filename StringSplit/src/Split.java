@@ -15,16 +15,7 @@ public class Split
 		
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		
-		String [] split = "I like apples!".split(" ");
-		System.out.println(split [0]);
-		split = "I really like really red apples".split("really");
-		System.out.println(split[2]);
-		System.out.println(Arrays.toString(split));
-		split = "I reallyreally like apples".split("really"); 
-		System.out.println(split[(split.length-1)]);
-		split = "I really do not really kinda sorta really now".split("really");
-		System.out.println(Arrays.toString(split));
-		System.out.println(split[2]);
+		apples();
 		String ingredients = "breadbread.";
 		sandwich(ingredients);
 		ingredients = "breadstrawberrykiwilimebreadduck";
@@ -32,7 +23,7 @@ public class Split
 		sandwich(ingredients);
 		String ingredientes = "apples pineapples bread lettus bread kiwi";
 		sandwichWSpaces(ingredientes);
-		ingredientes = "bread bread bread bread";
+		ingredientes = "bread meat cheese lettuce bread";
 		sandwichWSpaces(ingredientes);
 		
 				
@@ -45,6 +36,8 @@ public class Split
 		*/
 		public static void sandwich(String foods)
 		{
+			System.out.println(foods);
+			System.out.println(foods.indexOf("bread"));
 			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +5)
 			{
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread"));
@@ -65,6 +58,8 @@ public class Split
 
 		public static void sandwichWSpaces(String foods) {
 			foods.trim(); 
+			System.out.println(foods);
+			System.out.println(foods.indexOf("bread"));
 			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +6)
 			{
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread")); 
@@ -76,7 +71,18 @@ public class Split
 			}
 		}
 
-	
+		public static void apples() { 
+			String [] split = "I like apples!".split(" ");
+			System.out.println(split [0]);
+			split = "I really like really red apples".split("really");
+			System.out.println(split[2]);
+			System.out.println(Arrays.toString(split));
+			split = "I reallyreally like apples".split("really"); 
+			System.out.println(split[(split.length-1)]);
+			split = "I really do not really kinda sorta really now".split("really");
+			System.out.println(Arrays.toString(split));
+			System.out.println(split[2]);
+		}
 
 }
 
