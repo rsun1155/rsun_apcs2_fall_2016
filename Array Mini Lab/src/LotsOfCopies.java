@@ -9,7 +9,7 @@ public class LotsOfCopies {
 		System.out.println(num); //Everything worked out
 		System.out.println(strMain); //Everything worked out
 		System.out.println(arrMain); //printed out gibberish, as expected.
-		System.out.println(Arrays.toString(arrMain));
+		System.out.println(Arrays.toString(arrMain)); //everything worked out
 		changeMe(num, strMain, arrMain); 
 		System.out.println(num);
 		System.out.println(strMain);
@@ -22,6 +22,10 @@ public class LotsOfCopies {
 		int b = a;
 		String banana = apple; 
 		int [] baboon = appleMain; 
+		changeMe(a, apple, appleMain);
+		System.out.println(b);
+		System.out.println(banana);
+		System.out.println(Arrays.toString(baboon));
 		
 		
 		
