@@ -18,6 +18,9 @@ public class Split
 		apples(); //part 0 playing around with the split method
 		String ingredients = "breadduckbread.";
 		sandwich(ingredients);
+		String ingredient2 = "bread cabbage kiwi bread pie bread";
+		sandwichWSpaces(ingredient2);
+		
 			}
 		//Your task:
 		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
@@ -28,13 +31,22 @@ public class Split
 		public static void sandwich(String foods)
 		{
 			foods.toLowerCase();
-			if (foods.indexOf("bread") > = 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") + 5) {
-				while (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread")) {
-					foods = foods.substring(foods.indexOf("bread")+5, foods.lastIndexOf("bread")-1);
+			if ((foods.indexOf("bread") >= 0) && 
+					(foods.lastIndexOf("bread") != foods.indexOf("bread")) && 
+					(foods.lastIndexOf("bread") != foods.indexOf("bread") + 5)) {
+				while (foods.indexOf("bread") >= 0) {
+					if (foods.lastIndexOf("bread") == foods.indexOf("bread")) {
+						String [] oddBread = foods.split("bread");
+						System.out.println(oddBread[0]);
+						break;
+					}
+					else {
+					foods = foods.substring(foods.indexOf("bread")+5, foods.lastIndexOf("bread"));
+				}
 				}
 				System.out.println(foods);
 			}
-			else if (foods.lastIndexOf("bread") = foods.indexOf("bread") + 5) {
+			else if (foods.lastIndexOf("bread") == foods.indexOf("bread") + 5) {
 				System.out.println("Please put something in your two pieces of bread");
 			}
 			else {
@@ -49,16 +61,34 @@ public class Split
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 		*/
 
-		public static void sandwichWSpaces(String foods) {
+		public static void sandwichWSpaces(String foods)
+		{
 			foods.toLowerCase();
-			if (foods.indexOf("bread") > = 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && 
-					foods.lastIndexOf("bread") != foods.indexOf("bread") + 6) {
-				while (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread")) {
-					foods = foods.substring(foods.indexOf("bread")+6, foods.lastIndexOf("bread")-2);
-				}
-				System.out.println(foods);
+			int printBreak = 0;
+			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && 
+					foods.lastIndexOf("bread") != foods.indexOf("bread") + 6)
+			{
+					while (foods.indexOf("bread") >= 0) 
+					{
+						if (foods.lastIndexOf("bread") == foods.indexOf("bread")) 
+						{
+							String [] oddBread = foods.split("bread");
+							//If there are an odd number of bread pieces
+							System.out.println(oddBread[0]);
+							printBreak = 2;
+							break; 
+							//not the cleanest way to escape the while loop. 
+						}
+							else {
+							foods = foods.substring(foods.indexOf("bread")+6, foods.lastIndexOf("bread")-1);
+							}
+						if (printBreak == 0) {
+							//not the cleanest way to avoid printing twice if the number of breads is odd. 
+								System.out.println(foods);
+						}
+					}
 			}
-			else if (foods.lastIndexOf("bread") = foods.indexOf("bread") + 6) {
+			else if (foods.lastIndexOf("bread") == foods.indexOf("bread") + 6) {
 				System.out.println("Please put something in your two pieces of bread");
 			}
 			else {
