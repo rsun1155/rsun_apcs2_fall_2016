@@ -15,29 +15,10 @@ public class Split
 		
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		
-		String [] split = "I like apples!".split(" ");
-		System.out.println(split [0]);
-		split = "I really like really red apples".split("really");
-		System.out.println(split[2]);
-		System.out.println(Arrays.toString(split));
-		split = "I reallyreally like apples".split("really"); 
-		System.out.println(split[(split.length-1)]);
-		split = "I really do not really kinda sorta really now".split("really");
-		System.out.println(Arrays.toString(split));
-		System.out.println(split[2]);
-		String ingredients = "breadbread.";
+		apples(); //part 0 playing around with the split method
+		String ingredients = "breadduckbread.";
 		sandwich(ingredients);
-		ingredients = "breadstrawberrykiwilimebreadduck";
-		ingredients = "breadbreadbreadbread";
-		sandwich(ingredients);
-		String ingredientes = "apples pineapples bread lettus bread kiwi";
-		sandwichWSpaces(ingredientes);
-		ingredientes = "bread kiwi bread duck bread muffin bread";
-		sandwichWSpaces(ingredientes);
-		
-				
-		 
-	}
+			}
 		//Your task:
 		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
 		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
@@ -46,15 +27,18 @@ public class Split
 	//Use a while loop to cycle through the pairs of bread. Keep substringing until we only have two pieces. 
 		public static void sandwich(String foods)
 		{
-			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +5)
-			{ 
-				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread"));
-				String [] ingredients = foods.split("bread");
-				System.out.println(ingredients[ingredients.length/2]);
-				
+			foods.toLowerCase();
+			if (foods.indexOf("bread") > = 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") + 5) {
+				while (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread")) {
+					foods = foods.substring(foods.indexOf("bread")+5, foods.lastIndexOf("bread")-1);
+				}
+				System.out.println(foods);
+			}
+			else if (foods.lastIndexOf("bread") = foods.indexOf("bread") + 5) {
+				System.out.println("Please put something in your two pieces of bread");
 			}
 			else {
-				System.out.println("Fix your sandwich please.");
+				System.out.println("Please get some bread");
 			}
 		}
 		
@@ -66,21 +50,35 @@ public class Split
 		*/
 
 		public static void sandwichWSpaces(String foods) {
-			foods.trim(); 
-			if (foods.indexOf("bread") >= 0 &&  
-					foods.lastIndexOf("bread") != foods.indexOf("bread") 
-					&& foods.lastIndexOf("bread") != foods.indexOf("bread") +6) //I tested everything
-			{
-				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread")); 
-				String [] ingredients = foods.split(" ");
-				System.out.println(ingredients[(ingredients.length)/2]); //Fix this part
+			foods.toLowerCase();
+			if (foods.indexOf("bread") > = 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && 
+					foods.lastIndexOf("bread") != foods.indexOf("bread") + 6) {
+				while (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread")) {
+					foods = foods.substring(foods.indexOf("bread")+6, foods.lastIndexOf("bread")-2);
+				}
+				System.out.println(foods);
+			}
+			else if (foods.lastIndexOf("bread") = foods.indexOf("bread") + 6) {
+				System.out.println("Please put something in your two pieces of bread");
 			}
 			else {
-				System.out.println("Please make sure that your sandwich is in order.");
+				System.out.println("Please get some bread");
 			}
+			
 		}
 
-	
+	public static void apples() {
+		String [] split = "I like apples!".split(" ");
+		System.out.println(split [0]);
+		split = "I really like really red apples".split("really");
+		System.out.println(split[2]);
+		System.out.println(Arrays.toString(split));
+		split = "I reallyreally like apples".split("really"); 
+		System.out.println(split[(split.length-1)]);
+		split = "I really do not really kinda sorta really now".split("really");
+		System.out.println(Arrays.toString(split));
+		System.out.println(split[2]);
+	}
 
 }
 
