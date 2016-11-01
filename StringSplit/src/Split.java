@@ -15,7 +15,16 @@ public class Split
 		
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		
-		apples();
+		String [] split = "I like apples!".split(" ");
+		System.out.println(split [0]);
+		split = "I really like really red apples".split("really");
+		System.out.println(split[2]);
+		System.out.println(Arrays.toString(split));
+		split = "I reallyreally like apples".split("really"); 
+		System.out.println(split[(split.length-1)]);
+		split = "I really do not really kinda sorta really now".split("really");
+		System.out.println(Arrays.toString(split));
+		System.out.println(split[2]);
 		String ingredients = "breadbread.";
 		sandwich(ingredients);
 		ingredients = "breadstrawberrykiwilimebreadduck";
@@ -23,7 +32,7 @@ public class Split
 		sandwich(ingredients);
 		String ingredientes = "apples pineapples bread lettus bread kiwi";
 		sandwichWSpaces(ingredientes);
-		ingredientes = "bread meat cheese lettuce bread";
+		ingredientes = "bread kiwi bread duck bread muffin bread";
 		sandwichWSpaces(ingredientes);
 		
 				
@@ -34,12 +43,11 @@ public class Split
 		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 		*/
+	//Use a while loop to cycle through the pairs of bread. Keep substringing until we only have two pieces. 
 		public static void sandwich(String foods)
 		{
-			System.out.println(foods);
-			System.out.println(foods.indexOf("bread"));
 			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +5)
-			{
+			{ 
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread"));
 				String [] ingredients = foods.split("bread");
 				System.out.println(ingredients[ingredients.length/2]);
@@ -50,7 +58,8 @@ public class Split
 			}
 		}
 		
-		//Your task pt 2:
+
+	//Your task pt 2:
 		/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
 		 * use String.split to split up the sandwich at the spaces, " ", and return what's in the middle of the sandwich and ignores what's on the outside
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
@@ -58,31 +67,20 @@ public class Split
 
 		public static void sandwichWSpaces(String foods) {
 			foods.trim(); 
-			System.out.println(foods);
-			System.out.println(foods.indexOf("bread"));
-			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && foods.lastIndexOf("bread") != foods.indexOf("bread") +6)
+			if (foods.indexOf("bread") >= 0 &&  
+					foods.lastIndexOf("bread") != foods.indexOf("bread") 
+					&& foods.lastIndexOf("bread") != foods.indexOf("bread") +6) //I tested everything
 			{
 				foods = foods.substring(foods.indexOf("bread"), foods.lastIndexOf("bread")); 
 				String [] ingredients = foods.split(" ");
-				System.out.println(ingredients[(ingredients.length)/2]);
+				System.out.println(ingredients[(ingredients.length)/2]); //Fix this part
 			}
 			else {
 				System.out.println("Please make sure that your sandwich is in order.");
 			}
 		}
 
-		public static void apples() { 
-			String [] split = "I like apples!".split(" ");
-			System.out.println(split [0]);
-			split = "I really like really red apples".split("really");
-			System.out.println(split[2]);
-			System.out.println(Arrays.toString(split));
-			split = "I reallyreally like apples".split("really"); 
-			System.out.println(split[(split.length-1)]);
-			split = "I really do not really kinda sorta really now".split("really");
-			System.out.println(Arrays.toString(split));
-			System.out.println(split[2]);
-		}
+	
 
 }
 
