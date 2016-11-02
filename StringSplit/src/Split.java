@@ -1,3 +1,4 @@
+// Ryan Sun 2nd Period APCS StringSplit Lab. This program explores String.split(), and the two methods print out the middle of a sandwich, given a String of ingredients
 import java.util.Arrays;
 public class Split 
 {
@@ -16,10 +17,11 @@ public class Split
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		
 		apples(); //part 0 playing around with the split method
-		String ingredients = "breadduckbread.";
+		String ingredients = "breadbread.";
 		sandwich(ingredients);
-		String ingredient2 = "bread cabbage kiwi bread pie bread";
+		String ingredient2 = "cheese lettuce bread kiwi carrot bread pepper butter salad bread strawberry bread";
 		sandwichWSpaces(ingredient2);
+		
 		
 			}
 		//Your task:
@@ -27,18 +29,23 @@ public class Split
 		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 		*/
-	//Use a while loop to cycle through the pairs of bread. Keep substringing until we only have two pieces. 
-		public static void sandwich(String foods)
+	
+	
+		public static void sandwich(String foods) //method that deals with strings without spaces. 
+		//It prints out the contents of the middle of the sandwich
 		{
 			foods.toLowerCase();
 			if ((foods.indexOf("bread") >= 0) && 
 					(foods.lastIndexOf("bread") != foods.indexOf("bread")) && 
 					(foods.lastIndexOf("bread") != foods.indexOf("bread") + 5)) {
-				while (foods.indexOf("bread") >= 0) {
-					if (foods.lastIndexOf("bread") == foods.indexOf("bread")) {
+				//Makes sure 1) 1 piece of bread exists, 2) two distinct pieces of bread exist, and 3) those pieces are not next to each other.
+				
+				while (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") >= foods.indexOf("bread")) {
+					if (foods.lastIndexOf("bread") == foods.indexOf("bread")) { 
+						//In the scenario that there are an odd number of bread slices
 						String [] oddBread = foods.split("bread");
-						System.out.println(oddBread[0]);
-						break;
+						foods = oddBread[0];
+						//I returned the one on the left because both sides could be constituted as the middle
 					}
 					else {
 					foods = foods.substring(foods.indexOf("bread")+5, foods.lastIndexOf("bread"));
@@ -63,30 +70,27 @@ public class Split
 
 		public static void sandwichWSpaces(String foods)
 		{
-			foods.toLowerCase();
-			int printBreak = 0;
+			foods.toLowerCase(); //In case someone gets cheeky with capitalization
 			if (foods.indexOf("bread") >= 0 && foods.lastIndexOf("bread") != foods.indexOf("bread") && 
-					foods.lastIndexOf("bread") != foods.indexOf("bread") + 6)
+					foods.lastIndexOf("bread") != foods.indexOf("bread") + 6) 
+				//Makes sure 1) 1 piece of bread exists, 2) two distinct pieces of bread exist, and 3) those pieces are not next to each other.
 			{
 					while (foods.indexOf("bread") >= 0) 
 					{
+						//Loops the String and eliminates exterior breads through substring method.
 						if (foods.lastIndexOf("bread") == foods.indexOf("bread")) 
 						{
 							String [] oddBread = foods.split("bread");
 							//If there are an odd number of bread pieces
-							System.out.println(oddBread[0]);
-							printBreak = 2;
-							break; 
-							//not the cleanest way to escape the while loop. 
+							foods = oddBread[0];
+							//Returned the ingredients to the left
 						}
 							else {
 							foods = foods.substring(foods.indexOf("bread")+6, foods.lastIndexOf("bread")-1);
 							}
-						if (printBreak == 0) {
-							//not the cleanest way to avoid printing twice if the number of breads is odd. 
-								System.out.println(foods);
-						}
 					}
+					//After determining the middle of the sandwich
+								System.out.println(foods);
 			}
 			else if (foods.lastIndexOf("bread") == foods.indexOf("bread") + 6) {
 				System.out.println("Please put something in your two pieces of bread");
@@ -97,7 +101,7 @@ public class Split
 			
 		}
 
-	public static void apples() {
+	public static void apples() { //playing around with the method split
 		String [] split = "I like apples!".split(" ");
 		System.out.println(split [0]);
 		split = "I really like really red apples".split("really");
@@ -111,5 +115,5 @@ public class Split
 	}
 
 }
-
+//I'm keeping the original comments in case I need to revise this later. 
 
