@@ -15,6 +15,11 @@ public class ArraysLab3
 		assert (arr1.length > 0);
 		assert (arr2.length > 0);
 		assert (arr1.length == arr2.length);
+		int [] sumArr = new int [arr1.length];
+		for (int i = 0; i < sumArr.length; i++) {
+			sumArr[i] = arr1[i] + arr2[i]; 
+		} 
+		return sumArr; 
 		
 	}
 	
@@ -27,6 +32,12 @@ public class ArraysLab3
 	public static int[] append(int[] arr, int num)
 	{
 		assert (arr.length > 0);
+		int [] hookOn = new int [arr.length + 1];
+		for (int i = 0; i < hookOn.length - 1; i++) { 
+			hookOn[i] = arr[i]; 
+		}
+		hookOn[hookOn.length-1] = num; 
+		return hookOn; 
 		
 	}
 	
@@ -39,6 +50,16 @@ public class ArraysLab3
 	public static int[] remove(int[] arr, int idx)
 	{
 		assert (arr.length >= 2);
+		int [] takeOff = new int [arr.length - 1];
+		for (int i = 0; i < takeOff.length - 1; i++) { 
+			if(i == idx) {
+				i--;
+			}
+			else { 
+			takeOff[i] = arr[i];
+			}
+		}
+		return takeOff;
 		
 	}
 	
@@ -47,7 +68,7 @@ public class ArraysLab3
 	 * and returns an integer containing the sum of the elements at the even indices of arr.  
 	 * (That means elements at indices 0,2,4,6,8.)  You can assume arr has at least one element.
 	 */
-	public static int sumEven(int[] arr)
+	/*public static int sumEven(int[] arr)
 	{
 		assert (arr.length > 0);
 		
@@ -60,7 +81,7 @@ public class ArraysLab3
 	 * (element 0 goes to element 1, element 1 goes to element 2, …, element n-1 goes to element 0).  
 	 * You can assume arr has at least one element.
 	 */
-	public static void rotateRight(int[] arr)
+	/*public static void rotateRight(int[] arr)
 	{
 		assert (arr.length > 0);
 		
@@ -89,8 +110,9 @@ public class ArraysLab3
 				a1
 	 */
 	
-	public static void main(String[] args) 
+/*	public static void main(String[] args) 
 	{
 		
 	}
+	*/
 }

@@ -48,7 +48,7 @@ public class ArraysLab3Test
 		System.out.println("Unit test testRemove passed.");
 	}
 
-	@Test
+/*	@Test
 	public void testSumEven() 
 	{
 		int[] a1 = 				{0, 5, 10, 15, 20, 25, 30, 35, 40};
@@ -70,6 +70,6 @@ public class ArraysLab3Test
 		                          + " Does not match the expected value of " + expectedResult,
 		                          expectedResult, a1);
 		System.out.println("Unit test testRotateRight passed.");
-	}
+	} */
 
 }
