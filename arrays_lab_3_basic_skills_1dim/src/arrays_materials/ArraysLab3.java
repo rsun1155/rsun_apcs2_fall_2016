@@ -1,3 +1,4 @@
+//Ryan Sun 11/5/16 2nd period ArraysLab3. This assignment explores arrays and what we can do with them. 
 package arrays_materials;
 
 import java.util.Arrays;
@@ -15,9 +16,10 @@ public class ArraysLab3
 		assert (arr1.length > 0);
 		assert (arr2.length > 0);
 		assert (arr1.length == arr2.length);
-		int [] sumArr = new int [arr1.length];
+		int [] sumArr = new int [arr1.length]; //Declares a new Array to store the sum of the two arrays
 		for (int i = 0; i < sumArr.length; i++) {
 			sumArr[i] = arr1[i] + arr2[i]; 
+			//At index i of our new array, the element is the sum of the respective index i's of the two input arrays
 		} 
 		return sumArr; 
 		
@@ -32,11 +34,12 @@ public class ArraysLab3
 	public static int[] append(int[] arr, int num)
 	{
 		assert (arr.length > 0);
-		int [] hookOn = new int [arr.length + 1];
+		int [] hookOn = new int [arr.length + 1]; //Creates a new Array with one more element than arr[]. 
 		for (int i = 0; i < hookOn.length - 1; i++) { 
-			hookOn[i] = arr[i]; 
+			hookOn[i] = arr[i];  
+			//For every common element of arr and hookOn, the loop transfers elements from arr to hookOn
 		}
-		hookOn[hookOn.length-1] = num; 
+		hookOn[hookOn.length-1] = num; //The last element of hookOn gets num
 		return hookOn; 
 		
 	}
@@ -50,29 +53,36 @@ public class ArraysLab3
 	public static int[] remove(int[] arr, int idx)
 	{
 		assert (arr.length >= 2);
-		int [] takeOff = new int [arr.length - 1];
-		for (int i = 0; i < takeOff.length - 1; i++) { 
-			if(i == idx) {
-				i--;
+		int [] takeOff = new int [arr.length - 1]; //Declares a new array with one less element than arr
+		for (int i = 0; i < idx; i++) { 
+			takeOff[i] = arr[i]; //For all elements before idx.
 			}
-			else { 
-			takeOff[i] = arr[i];
-			}
+		for (int i = idx; i < takeOff.length; i++) {
+			takeOff[i] = arr[i+1]; //For all elements including idx to the end of the array
+			//(It's like a piecewise function)
 		}
 		return takeOff;
 		
 	}
 	
-	/*
+		/*
 	 * Write a method sumEven that accepts an array of integers arr 
 	 * and returns an integer containing the sum of the elements at the even indices of arr.  
 	 * (That means elements at indices 0,2,4,6,8.)  You can assume arr has at least one element.
 	 */
-	/*public static int sumEven(int[] arr)
+	public static int sumEven(int[] arr)
 	{
 		assert (arr.length > 0);
-		
-	}
+		int totalEven = 0; //Declares and assigns a storage variable
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i]%2 == 0) {
+				totalEven += arr[i]; //If the element at index i is even, add it to the storage variable
+			}
+			else {
+			}
+		}
+		return totalEven;
+		}
 	
 	/*
 	 * Write a method rotateRight that accepts an array of integers arr 
@@ -81,9 +91,15 @@ public class ArraysLab3
 	 * (element 0 goes to element 1, element 1 goes to element 2, …, element n-1 goes to element 0).  
 	 * You can assume arr has at least one element.
 	 */
-	/*public static void rotateRight(int[] arr)
+		public static void rotateRight(int[] arr)
 	{
 		assert (arr.length > 0);
+		int lastValue = arr[arr.length - 1]; //just so we don't lose that last value
+		for (int i = arr.length - 1; i >= 1; i--) {  
+			//Starting at the end of the array, moves elements one to the right
+			arr[i] = arr[i - 1];
+		}
+			arr[0] = lastValue; //Puts that last value as the first element
 		
 	}
 
@@ -110,9 +126,25 @@ public class ArraysLab3
 				a1
 	 */
 	
-/*	public static void main(String[] args) 
+	public static void main(String[] args) 
 	{
+		//I did what the assignment sheet told me to do. 
+		int [] a1 = {5, 10, 15, 20, 25, 30, 35, 40};
+		int [] a2 = {7, 14, 21, 28, 35, 42, 49, 56};
+		int [] sumArr = sum(a1, a2); 
+		int appendNum = 200; 
+		int [] appendArr = append(a1, appendNum);
+		int removeidx = 5;
+		int [] removeArr = remove(a2, removeidx);
+		int sumOfEvens = sumEven(appendArr); 
+		rotateRight(a1);
+		System.out.println(Arrays.toString(sumArr));
+		System.out.println(Arrays.toString(appendArr));
+		System.out.println(Arrays.toString(removeArr));
+		System.out.println(sumOfEvens);
+		System.out.println(Arrays.toString(a1));
+		
 		
 	}
-	*/
+
 }
