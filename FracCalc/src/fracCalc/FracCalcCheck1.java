@@ -1,7 +1,7 @@
 package fracCalc;
 import java.util.*;
 
-public class FracCalc {
+public class FracCalcCheck1 {
 
     public static void main(String[] args) 
     {
@@ -9,8 +9,6 @@ public class FracCalc {
     	String inputString = input.nextLine();
     	System.out.println(produceAnswer(inputString));
         // TODO: Read the input from the user and call produceAnswer with an equation
-    	//Pt. 2 starts here
-    	while ()
 
     }
     
