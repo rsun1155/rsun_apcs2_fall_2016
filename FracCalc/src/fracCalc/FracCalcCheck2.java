@@ -9,7 +9,7 @@ public class FracCalcCheck2 {
     	String inputString = input.nextLine();
         // TODO: Read the input from the user and call produceAnswer with an equation
     //Pt. 2
-    	while (findKeyword(inputString, "quit") == -1 ) {
+    	while (inputString.equals("quit") == false ) {
     		System.out.println(produceAnswer(inputString));
     		inputString = input.nextLine(); 
     	}
@@ -38,38 +38,7 @@ public class FracCalcCheck2 {
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     
-    //FindKeyword from Magpie needed to find "quit". Changed the methods to static because of errors. 
-    private static int findKeyword(String statement, String goal, int startPos) {
-		String phrase = statement.trim();
-		// The only change to incorporate the startPos is in the line below
-		int psn = phrase.toLowerCase().indexOf(goal.toLowerCase(), startPos);
-
-		// Refinement--make sure the goal isn't part of a word
-		while (psn >= 0) {
-			// Find the string of length 1 before and after the word
-			String before = " ", after = " ";
-			if (psn > 0) {
-				before = phrase.substring(psn - 1, psn).toLowerCase();
-			}
-			if (psn + goal.length() < phrase.length()) {
-				after = phrase.substring(psn + goal.length(), psn + goal.length() + 1).toLowerCase();
-			}
-
-			// If before and after aren't letters, we've found the word
-			if (before.equals(" ") && (after.equals(" ") || after.equals("."))) {
-				return psn;
-			}
-			// The last position didn't work, so let's find the next, if there
-			// is one.
-			psn = phrase.indexOf(goal.toLowerCase(), psn + 1);
-
-		}
-
-		return -1;
-	}
-    private static int findKeyword(String statement, String goal) {
-		return findKeyword(statement, goal, 0);
-	}
+    
     //Parses the fraction, separating the whole number, numerator, and denominator
     public static String parseFrac(String operand) {
     	String wholeNum;
