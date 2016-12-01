@@ -29,37 +29,39 @@ public class FracCalc {
     	String [] inputArray = inputString.split(" ");
         // TODO: Implement this function to produce the solution to the input
         String operand1 = inputArray[0];
-        operand1 = parseFrac(operand1);
+       int [] newOperand1 = parseOperand(operand1);
         String operator = inputArray[1];
         String operand2 = inputArray[2];
-        operand2 = parseFrac(operand2);
+        operand2 = parseOperand(operand2);
         return operand2;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     
-    //Parses the fraction, separating the whole number, numerator, and denominator
-    public static String parseFrac(String operand) {
-    	String wholeNum;
-    	String numerator;
-    	String denominator; 
+    //Parses the fraction, separating the whole number, numerator, and denominator}
+    public static void parseOperand(String operand, int [] newFrac) {
+    	int wholeNum;
+    	int numerator;
+    	int denominator; 
     	if (operand.indexOf("/") >= 0 && operand.indexOf("_") >= 0) {
-        	wholeNum = "whole:" + operand.substring(0, operand.indexOf("_")); 
-        	 numerator = "numerator:" + operand.substring(operand.indexOf("_") + 1, operand.indexOf("/"));
-        	 denominator = "denominator:" + operand.substring(operand.indexOf("/") + 1);
+        	wholeNum = Integer.parseInt(operand.substring(0, operand.indexOf("_"))); 
+        	 numerator = Integer.parseInt(operand.substring(operand.indexOf("_") + 1, operand.indexOf("/")));
+        	 denominator = Integer.parseInt(operand.substring(operand.indexOf("/") + 1));
         }
         else if (operand.indexOf("_") == -1 && operand.indexOf("/") >= 0) {
-        	wholeNum = "whole:0";
-        	numerator = "numerator:" + operand.substring(0, operand.indexOf("/"));
-        	denominator = "denominator:" + operand.substring(operand.indexOf("/") + 1);
+        	wholeNum = 0;
+        	numerator = Integer.parseInt(operand.substring(0, operand.indexOf("/")));
+        	denominator = Integer.parseInt(operand.substring(operand.indexOf("/") + 1));
         }
         else {
-        	wholeNum = "whole:" + operand;
-        	numerator = "numerator:0";
-        	denominator = "denominator:1";
+        	wholeNum = Integer.parseInt(operand);
+        	numerator = 0;
+        	denominator = 1;
          }
-    	operand = wholeNum + " " + numerator + " " + denominator; 
-    	return operand;
+    	newFrac[0] = wholeNum;
+    	newFrac[1] = numerator;
+    	newFrac[2] = denominator;
+    	
     	
     }
 }
