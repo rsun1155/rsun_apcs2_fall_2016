@@ -29,10 +29,12 @@ public class FracCalc {
     	String [] inputArray = inputString.split(" ");
         // TODO: Implement this function to produce the solution to the input
         String operand1 = inputArray[0];
-       int [] newOperand1 = parseOperand(operand1);
+        int[] operand1Array = new int [3];
+        int[] operand2Array = new int [3];
+        parseOperand(operand1, operand1Array);
         String operator = inputArray[1];
         String operand2 = inputArray[2];
-        operand2 = parseOperand(operand2);
+        parseOperand(operand2, operand2Array);
         return operand2;
     }
 
