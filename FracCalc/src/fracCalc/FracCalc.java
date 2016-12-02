@@ -66,4 +66,41 @@ public class FracCalc {
     	
     	
     }
+    public static String addFrac(int[] operand1, int[] operand2) {
+    	int denominator = operand1[2] * operand2[2]; 
+    	int numerator1 = operand1[1] * operand2[2];
+    	int numerator2 = operand2[1] * operand1[2];
+    	int numerator = numerator1 + numerator2;
+    	int whole = operand1[0] + operand2[0];
+    	String answer = whole + "_" + numerator + "/" + denominator; 
+    	return answer;
+    	
+    }
+    public static String subFrac(int [] operand1, int [] operand2) {
+    	operand2[1] = -1 * operand2[1];
+    	operand2[0] = -1 * operand2[0];
+    	String answer = addFrac(operand1, operand2);
+    	return answer;
+    	
+    }
+    public static void toImproperFrac(int [] operand) { 
+    	if (operand[0] >= 0) {
+    	operand[0] = (operand[0] * operand[2]) + operand[1]; 
+    	}   
+    	else {
+    	operand[0] = (operand[0] * operand[2]) - operand[1];
+    	}
+    	operand[1] = operand[2]; 
+    }
+    public static void multFrac(int [] operand1, int [] operand2) { 
+    	toImproperFrac(operand1);
+    	toImproperFrac(operand2);
+    	int numerator = operand1[0] * operand2[0];
+    	int denominator = operand1[1] * operand1[1]; 
+    	int [] product = {numerator, denominator};
+    }
+    public static void divFrac(int[] operand1, int[] operand2) { 
+    	
+    }
+    
 }
