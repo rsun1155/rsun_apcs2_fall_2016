@@ -100,6 +100,11 @@ public class FracCalc {
     	int [] product = {numerator, denominator};
     }
     public static void divFrac(int[] operand1, int[] operand2) { 
+    	toImproperFrac(operand2);
+    	int denominator = operand2[1];
+    	operand2[1] = operand2[0];
+    	operand2[0] = denominator; 
+    	multFrac(operand1, operand2);
     	
     }
     
