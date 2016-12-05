@@ -1,3 +1,4 @@
+//Ryan Sun 2nd Period 12/4/16
 package fracCalc;
 import java.util.*;
 
@@ -8,9 +9,9 @@ public class FracCalc {
     	Scanner input = new Scanner(System.in); 
     	String inputString = input.nextLine();
         // TODO: Read the input from the user and call produceAnswer with an equation
-    //Pt. 2
+    //Pt. 3
     	while (inputString.equals("quit") == false) {
-    		System.out.println(produceAnswer(inputString));
+    		System.out.println(Arrays.toString(resultFrac));
     		inputString = input.nextLine(); 
     	}
     	input.close();
@@ -24,10 +25,12 @@ public class FracCalc {
     //        
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String inputString)
+    public static void produceAnswer(String inputString)
     {  
     	String [] inputArray = inputString.split(" ");
         // TODO: Implement this function to produce the solution to the input
+    	int [] resultFrac = new int [2];
+    	
         String operand1 = inputArray[0];
         int[] operand1Array = new int [3];
         int[] operand2Array = new int [3];
@@ -35,7 +38,23 @@ public class FracCalc {
         String operator = inputArray[1];
         String operand2 = inputArray[2];
         parseOperand(operand2, operand2Array);
-        return operand2;
+        //do operations here
+        if (inputArray[2] == "+") {
+        	resultFrac = addFrac(operand1Array, operand2Array, resultFrac);
+        }
+        else if (inputArray[2] == "-") {
+        	resultFrac = subFrac(operand1Array, operand2Array);
+        }
+        else if (inputArray[2] == "*") {
+        	resultFrac = multFrac(operand1Array,operand2Array);
+        }
+        else if (inputArray[2] == "/") {
+        	resultFrac = divFrac(operand1Array, operand2Array);
+        }
+        else {
+        	System.out.println("need an operator");
+        }
+        
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
@@ -66,21 +85,23 @@ public class FracCalc {
     	
     	
     }
-    public static String addFrac(int[] operand1, int[] operand2) {
-    	int denominator = operand1[2] * operand2[2]; 
-    	int numerator1 = operand1[1] * operand2[2];
-    	int numerator2 = operand2[1] * operand1[2];
+    public static void addFrac(int[] operand1, int[] operand2, int [] newFrac) {
+    	toImproperFrac(operand1);
+    	toImproperFrac(operand2);
+    	int denominator = operand1[1] * operand2[1]; 
+    	int numerator1 = operand1[0] * operand2[1];
+    	int numerator2 = operand2[0] * operand1[1];
     	int numerator = numerator1 + numerator2;
-    	int whole = operand1[0] + operand2[0];
-    	String answer = whole + "_" + numerator + "/" + denominator; 
-    	return answer;
+    	newFrac[0] = numerator;
+    	newFrac[1] = denominator; 
     	
     }
-    public static String subFrac(int [] operand1, int [] operand2) {
+    public static void subFrac(int [] operand1, int [] operand2, int [] newFrac) {
     	operand2[1] = -1 * operand2[1];
     	operand2[0] = -1 * operand2[0];
-    	String answer = addFrac(operand1, operand2);
-    	return answer;
+    	addFrac(operand1, operand2, newFrac);
+    	
+    	
     	
     }
     public static void toImproperFrac(int [] operand) { 
@@ -92,19 +113,20 @@ public class FracCalc {
     	}
     	operand[1] = operand[2]; 
     }
-    public static void multFrac(int [] operand1, int [] operand2) { 
+    public static void multFrac(int [] operand1, int [] operand2, int [] resultFrac) { 
     	toImproperFrac(operand1);
     	toImproperFrac(operand2);
     	int numerator = operand1[0] * operand2[0];
     	int denominator = operand1[1] * operand1[1]; 
     	int [] product = {numerator, denominator};
+    	resultFrac = product;
     }
-    public static void divFrac(int[] operand1, int[] operand2) { 
+    public static void divFrac(int[] operand1, int[] operand2, int [] resultFrac) { 
     	toImproperFrac(operand2);
     	int denominator = operand2[1];
     	operand2[1] = operand2[0];
     	operand2[0] = denominator; 
-    	multFrac(operand1, operand2);
+    	multFrac(operand1, operand2, resultFrac);
     	
     }
     
