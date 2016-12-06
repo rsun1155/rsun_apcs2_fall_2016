@@ -11,7 +11,8 @@ public class FracCalc {
         // TODO: Read the input from the user and call produceAnswer with an equation
     //Pt. 3
     	while (inputString.equals("quit") == false) {
-    		System.out.println(Arrays.toString(resultFrac));
+    		String answer = produceAnswer(inputString);
+    		System.out.println(answer);
     		inputString = input.nextLine(); 
     	}
     	input.close();
@@ -25,45 +26,45 @@ public class FracCalc {
     //        
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
-    public static void produceAnswer(String inputString)
+    public static String produceAnswer(String inputString)
     {  
     	String [] inputArray = inputString.split(" ");
         // TODO: Implement this function to produce the solution to the input
     	int [] resultFrac = new int [2];
-    	
         String operand1 = inputArray[0];
-        int[] operand1Array = new int [3];
-        int[] operand2Array = new int [3];
-        parseOperand(operand1, operand1Array);
+     int [] operand1Array = parseOperand(operand1);
         String operator = inputArray[1];
         String operand2 = inputArray[2];
-        parseOperand(operand2, operand2Array);
+      int [] operand2Array = parseOperand(operand2);
         //do operations here
-        if (inputArray[2] == "+") {
-        	resultFrac = addFrac(operand1Array, operand2Array, resultFrac);
+        if (operator == "+") {
+        	resultFrac = addFrac(operand1Array, operand2Array);
         }
-        else if (inputArray[2] == "-") {
+        else if (operator == "-") {
         	resultFrac = subFrac(operand1Array, operand2Array);
         }
-        else if (inputArray[2] == "*") {
+        else if (operator == "*") {
         	resultFrac = multFrac(operand1Array,operand2Array);
         }
-        else if (inputArray[2] == "/") {
+        else if (operator == "/") {
         	resultFrac = divFrac(operand1Array, operand2Array);
         }
         else {
         	System.out.println("need an operator");
         }
+        String answer = resultFrac[0] + "/" + resultFrac[1];
+        return answer;
         
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     
     //Parses the fraction, separating the whole number, numerator, and denominator}
-    public static void parseOperand(String operand, int [] newFrac) {
+    public static int [] parseOperand(String operand) {
     	int wholeNum;
     	int numerator;
     	int denominator; 
+    	int [] operandArray = new int [3];
     	if (operand.indexOf("/") >= 0 && operand.indexOf("_") >= 0) {
         	wholeNum = Integer.parseInt(operand.substring(0, operand.indexOf("_"))); 
         	 numerator = Integer.parseInt(operand.substring(operand.indexOf("_") + 1, operand.indexOf("/")));
@@ -79,55 +80,66 @@ public class FracCalc {
         	numerator = 0;
         	denominator = 1;
          }
-    	newFrac[0] = wholeNum;
-    	newFrac[1] = numerator;
-    	newFrac[2] = denominator;
+    	operandArray[0] = wholeNum;
+    	operandArray[1] = numerator;
+    	operandArray[2] = denominator;
+    	return operandArray;
     	
     	
     }
-    public static void addFrac(int[] operand1, int[] operand2, int [] newFrac) {
-    	toImproperFrac(operand1);
-    	toImproperFrac(operand2);
-    	int denominator = operand1[1] * operand2[1]; 
-    	int numerator1 = operand1[0] * operand2[1];
-    	int numerator2 = operand2[0] * operand1[1];
+    public static int [] addFrac(int[] operand1, int[] operand2) {
+    	int [] improper1 = toImproperFrac(operand1);
+    	int [] improper2 = toImproperFrac(operand2);
+    	int [] newFrac = new int [2];
+    	int denominator = improper1[1] * improper2[1]; 
+    	int numerator1 = improper1[0] * improper2[1];
+    	int numerator2 = improper2[0] * improper1[1];
     	int numerator = numerator1 + numerator2;
     	newFrac[0] = numerator;
     	newFrac[1] = denominator; 
+    	return newFrac;
     	
     }
-    public static void subFrac(int [] operand1, int [] operand2, int [] newFrac) {
+    public static int [] subFrac(int [] operand1, int [] operand2) {
     	operand2[1] = -1 * operand2[1];
     	operand2[0] = -1 * operand2[0];
-    	addFrac(operand1, operand2, newFrac);
+    	int [] newFrac = addFrac(operand1, operand2);
+    	return newFrac;
     	
     	
     	
     }
-    public static void toImproperFrac(int [] operand) { 
-    	if (operand[0] >= 0) {
-    	operand[0] = (operand[0] * operand[2]) + operand[1]; 
+    public static int [] toImproperFrac(int [] operand) { 
+    	int [] newFrac = new int [2];
+    	 if (operand[0] >= 0 && operand.length != 2) {
+    	newFrac[0] = (operand[0] * operand[2]) + operand[1]; 
+    	newFrac[1] = operand[2];
+    	//if the mixed number is positive, then multiply whole by denominator then add numerator
     	}   
-    	else {
-    	operand[0] = (operand[0] * operand[2]) - operand[1];
+    	else if (operand[0] < 0 && operand.length != 2){
+    	newFrac[0] = (operand[0] * operand[2]) - operand[1];
+    	newFrac[1] = operand[2];
     	}
-    	operand[1] = operand[2]; 
+    	else {
+    		newFrac = operand;
+    	}
+    	return newFrac;
     }
-    public static void multFrac(int [] operand1, int [] operand2, int [] resultFrac) { 
+    public static int [] multFrac(int [] operand1, int [] operand2) { 
     	toImproperFrac(operand1);
     	toImproperFrac(operand2);
     	int numerator = operand1[0] * operand2[0];
     	int denominator = operand1[1] * operand1[1]; 
     	int [] product = {numerator, denominator};
-    	resultFrac = product;
+    	return product;
     }
-    public static void divFrac(int[] operand1, int[] operand2, int [] resultFrac) { 
-    	toImproperFrac(operand2);
+    public static int [] divFrac(int[] operand1, int[] operand2) { 
+    	operand2 = toImproperFrac(operand2);
     	int denominator = operand2[1];
     	operand2[1] = operand2[0];
     	operand2[0] = denominator; 
-    	multFrac(operand1, operand2, resultFrac);
-    	
+    	int [] product = multFrac(operand1, operand2);
+    	return product;
     }
     
 }
