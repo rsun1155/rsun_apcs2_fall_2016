@@ -33,20 +33,20 @@ public class FracCalc {
     	int [] resultFrac = new int [2];
         String operand1 = inputArray[0];
      int [] operand1Array = parseOperand(operand1);
-        String operator = inputArray[1];
+        String operator = inputArray[1].trim();
         String operand2 = inputArray[2];
       int [] operand2Array = parseOperand(operand2);
         //do operations here
-        if (operator == "+") {
+        if (operator.equals("+")) {
         	resultFrac = addFrac(operand1Array, operand2Array);
         }
-        else if (operator == "-") {
+        else if (operator.equals("-")) {
         	resultFrac = subFrac(operand1Array, operand2Array);
         }
-        else if (operator == "*") {
+        else if (operator.equals("*")) {
         	resultFrac = multFrac(operand1Array,operand2Array);
         }
-        else if (operator == "/") {
+        else if (operator.equals("/")) {
         	resultFrac = divFrac(operand1Array, operand2Array);
         }
         else {
@@ -101,8 +101,12 @@ public class FracCalc {
     	
     }
     public static int [] subFrac(int [] operand1, int [] operand2) {
+    	if (operand2[0] == 0) {
     	operand2[1] = -1 * operand2[1];
+    	}
+    	else {
     	operand2[0] = -1 * operand2[0];
+    	}
     	int [] newFrac = addFrac(operand1, operand2);
     	return newFrac;
     	
@@ -111,7 +115,8 @@ public class FracCalc {
     }
     public static int [] toImproperFrac(int [] operand) { 
     	int [] newFrac = new int [2];
-    	 if (operand[0] >= 0 && operand.length != 2) {
+    	if (operand[0] != 0) {
+    	 if (operand[0] > 0 && operand.length != 2) {
     	newFrac[0] = (operand[0] * operand[2]) + operand[1]; 
     	newFrac[1] = operand[2];
     	//if the mixed number is positive, then multiply whole by denominator then add numerator
@@ -123,13 +128,18 @@ public class FracCalc {
     	else {
     		newFrac = operand;
     	}
+    	}
+    	else {
+    		newFrac[0] = operand[1];
+    		newFrac[1] = operand[2];
+    	}
     	return newFrac;
     }
     public static int [] multFrac(int [] operand1, int [] operand2) { 
-    	toImproperFrac(operand1);
-    	toImproperFrac(operand2);
+    	operand1 = toImproperFrac(operand1);
+    	operand2 = toImproperFrac(operand2);
     	int numerator = operand1[0] * operand2[0];
-    	int denominator = operand1[1] * operand1[1]; 
+    	int denominator = operand1[1] * operand2[1]; 
     	int [] product = {numerator, denominator};
     	return product;
     }
