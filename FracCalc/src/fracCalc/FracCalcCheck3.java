@@ -2,19 +2,17 @@
 package fracCalc;
 import java.util.*;
 
-public class FracCalc {
+public class FracCalcCheck3 {
 
     public static void main(String[] args) 
     {
     	Scanner input = new Scanner(System.in); 
-    	System.out.println("Input your expression.");
     	String inputString = input.nextLine();
         // TODO: Read the input from the user and call produceAnswer with an equation
     //Pt. 3
     	while (inputString.equals("quit") == false) {
     		String answer = produceAnswer(inputString);
     		System.out.println(answer);
-    		System.out.println("Input your expression.");
     		inputString = input.nextLine(); 
     	}
     	input.close();
@@ -30,7 +28,6 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String inputString)
     {  
-    	String answer;
     	String [] inputArray = inputString.split(" ");
         // TODO: Implement this function to produce the solution to the input
     	int [] resultFrac = new int [2];
@@ -39,8 +36,6 @@ public class FracCalc {
         String operator = inputArray[1].trim();
         String operand2 = inputArray[2];
       int [] operand2Array = parseOperand(operand2);
-      operand1Array = toImproperFrac(operand1Array);
-      operand2Array = toImproperFrac(operand2Array);
         //do operations here
         if (operator.equals("+")) {
         	resultFrac = addFrac(operand1Array, operand2Array);
@@ -57,17 +52,7 @@ public class FracCalc {
         else {
         	System.out.println("need an operator");
         }
-     int [] answerFrac =  reduceFrac(resultFrac);
-     	if (answerFrac[0] == 0) {
-     		answer = answerFrac[1] + "/" + answerFrac[2];
-     	}
-     	else if (answerFrac[1] == 0) {
-     		answer = "" + answerFrac[0];
-     	}
-     	else {
-     		answer = answerFrac[0] + "_" + answerFrac[1] + "/" + answerFrac[2];
-     	}
-        
+        String answer = resultFrac[0] + "/" + resultFrac[1];
         return answer;
         
     }
@@ -103,10 +88,12 @@ public class FracCalc {
     	
     }
     public static int [] addFrac(int[] operand1, int[] operand2) {
+    	int [] improper1 = toImproperFrac(operand1);
+    	int [] improper2 = toImproperFrac(operand2);
     	int [] newFrac = new int [2];
-    	int denominator = operand1[1] * operand2[1]; 
-    	int numerator1 = operand1[0] * operand2[1];
-    	int numerator2 = operand2[0] * operand1[1];
+    	int denominator = improper1[1] * improper2[1]; 
+    	int numerator1 = improper1[0] * improper2[1];
+    	int numerator2 = improper2[0] * improper1[1];
     	int numerator = numerator1 + numerator2;
     	newFrac[0] = numerator;
     	newFrac[1] = denominator; 
@@ -149,46 +136,20 @@ public class FracCalc {
     	return newFrac;
     }
     public static int [] multFrac(int [] operand1, int [] operand2) { 
+    	operand1 = toImproperFrac(operand1);
+    	operand2 = toImproperFrac(operand2);
     	int numerator = operand1[0] * operand2[0];
     	int denominator = operand1[1] * operand2[1]; 
     	int [] product = {numerator, denominator};
     	return product;
     }
     public static int [] divFrac(int[] operand1, int[] operand2) { 
-    	int denominator = operand2[1]; //flip the second operand
+    	operand2 = toImproperFrac(operand2);
+    	int denominator = operand2[1];
     	operand2[1] = operand2[0];
     	operand2[0] = denominator; 
     	int [] product = multFrac(operand1, operand2);
     	return product;
     }
-    public static int gcf(int [] operand) {
-    		int count = 1;
-    		int factor = 1;
-    		while (count <= Math.min(operand[0], operand[1])) { //The gcf cannot be greater than the smaller number
-    			if (Math.abs(operand[0]%count) == 0 && Math.abs(operand[1]%count) ==0) {
-    				factor = count; //Keep picking up factors until we get to that point. 
-    			}
-    			count++;
-    		}
-    		return (factor);
-    	}
-    public static int [] reduceFrac(int [] operand) {
-    	int [] simpleFrac = new int [3]; //new array to hold the new whole value
-    	int factor;
-    	int numerator;
-    	int denominator;
-    	int whole;
-    		 factor = gcf(operand); //find gcf
-    		 numerator = operand[0]/factor; 
-    		 denominator = operand[1]/factor; //Reduced improper faction
-    			whole = numerator/denominator; //if numerator is less than denominator, this will be zero. That's ok
-    			numerator = numerator%denominator; //find the new denominator in the mixed number
-    			simpleFrac[0] = whole; //remember to filter out whole in produceAnswer
-    			simpleFrac[1] = numerator;
-    			simpleFrac[2] = denominator; 
-    		return simpleFrac; //Simplified fraction holding whole, numerator, and denominator. 
-
-    }
-    }
     
-
+}
