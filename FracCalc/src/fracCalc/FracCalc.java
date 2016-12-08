@@ -3,11 +3,11 @@ package fracCalc;
 import java.util.*;
 
 public class FracCalc {
-
+	//Main method, prompts user for input. 
     public static void main(String[] args) 
     {
     	Scanner input = new Scanner(System.in); 
-    	System.out.println("Input your expression.");
+    	System.out.println("Input your expression."); //prompts user input 
     	String inputString = input.nextLine();
         // TODO: Read the input from the user and call produceAnswer with an equation
     //Pt. 3
@@ -28,6 +28,10 @@ public class FracCalc {
     //        
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
+   
+    //produceAnswer takes in user input as a String, breaks it up into two operands and an operator, 
+    //and performs the operation on the two fractions. Finally, the method reduces the fraction and returns
+    //the answer as an mixed simplified fraction String. 
     public static String produceAnswer(String inputString)
     {  
     	String answer;
@@ -167,7 +171,7 @@ public class FracCalc {
     public static int gcf(int [] operand) {
     		int count = 1;
     		int factor = 1;
-    		while (count <= Math.min(operand[0], operand[1])) { //The gcf cannot be greater than the smaller number
+    		while (count <= Math.min(Math.abs(operand[0]), operand[1])) { //The gcf cannot be greater than the absolute value of smaller number
     			if (Math.abs(operand[0]%count) == 0 && Math.abs(operand[1]%count) ==0) {
     				factor = count; //Keep picking up factors until we get to that point. 
     			}
