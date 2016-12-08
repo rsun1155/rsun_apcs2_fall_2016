@@ -1,4 +1,4 @@
-//Ryan Sun 2nd Period 12/4/16
+//Ryan Sun 2nd Period 12/4/16 add comments later.
 package fracCalc;
 import java.util.*;
 
@@ -58,11 +58,14 @@ public class FracCalc {
         	System.out.println("need an operator");
         }
      int [] answerFrac =  reduceFrac(resultFrac);
-     	if (answerFrac[0] == 0) {
+     	if (answerFrac[0] == 0 && answerFrac[1] != 0) {
      		answer = answerFrac[1] + "/" + answerFrac[2];
      	}
      	else if (answerFrac[1] == 0) {
      		answer = "" + answerFrac[0];
+     	}
+     	else if (answerFrac[0] == 0 && answerFrac[0] == 0) {
+     		answer = "0";
      	}
      	else {
      		answer = answerFrac[0] + "_" + answerFrac[1] + "/" + answerFrac[2];
@@ -174,15 +177,14 @@ public class FracCalc {
     	}
     public static int [] reduceFrac(int [] operand) {
     	int [] simpleFrac = new int [3]; //new array to hold the new whole value
-    	int factor;
-    	int numerator;
-    	int denominator;
-    	int whole;
-    		 factor = gcf(operand); //find gcf
-    		 numerator = operand[0]/factor; 
-    		 denominator = operand[1]/factor; //Reduced improper faction
-    			whole = numerator/denominator; //if numerator is less than denominator, this will be zero. That's ok
-    			numerator = numerator%denominator; //find the new denominator in the mixed number
+    	int whole = operand[0]/operand[1];
+    	operand[0] = (operand[0]%operand[1]);
+    	if (whole != 0) {
+    	operand[0] = Math.abs(operand[0]);
+    	}
+    	int factor = gcf(operand);
+    	int numerator = operand[0]/factor;
+    	int denominator = Math.abs(operand[1]/factor); //Reduced improper faction //if numerator is less than denominator, this will be zero. That's ok
     			simpleFrac[0] = whole; //remember to filter out whole in produceAnswer
     			simpleFrac[1] = numerator;
     			simpleFrac[2] = denominator; 
