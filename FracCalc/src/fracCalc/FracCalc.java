@@ -1,16 +1,17 @@
-//Ryan Sun 2nd Period 12/4/16 add comments later.
+//Ryan Sun 2nd Period 12/10/16 
+//This program is intended to perform operations on the two operands and return a reduced mixed fraction.
 package fracCalc;
 import java.util.*;
 
 public class FracCalc {
-	//Main method, prompts user for input. 
+	//Main method, prompts user for input (presumably an expression of fractions). Main prints out the answer to the user's expression.
     public static void main(String[] args) 
     {
     	Scanner input = new Scanner(System.in); 
-    	System.out.println("Input your expression."); //prompts user input 
+    	System.out.println("Input your expression of fractions."); //prompts user input 
     	String inputString = input.nextLine();
         // TODO: Read the input from the user and call produceAnswer with an equation
-    //Pt. 3
+    //user input
     	while (inputString.equals("quit") == false) {
     		String answer = produceAnswer(inputString);
     		System.out.println(answer);
@@ -81,7 +82,8 @@ public class FracCalc {
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     
-    //Parses the fraction, separating the whole number, numerator, and denominator}
+    //Parses the fraction, separating the whole number, numerator, and denominator.
+    //Returns an int array holding the whole number, numerator and denominator
     public static int [] parseOperand(String operand) {
     	int wholeNum;
     	int numerator;
@@ -109,6 +111,7 @@ public class FracCalc {
     	
     	
     }
+    //Adds two operands, returns the sum
     public static int [] addFrac(int[] operand1, int[] operand2) {
     	int [] newFrac = new int [2];
     	int denominator = operand1[1] * operand2[1]; 
@@ -120,6 +123,7 @@ public class FracCalc {
     	return newFrac;
     	
     }
+    //Subtracts second operand from the first, returns the difference.
     public static int [] subFrac(int [] operand1, int [] operand2) {
     	if (operand2[0] == 0) {
     	operand2[1] = -1 * operand2[1];
@@ -133,6 +137,8 @@ public class FracCalc {
     	
     	
     }
+    //Changes a mixed number with whole number, numerator, and mixed number into an
+    //improper fraction (numerator, denominator). Returns that improper fraction.
     public static int [] toImproperFrac(int [] operand) { 
     	int [] newFrac = new int [2];
     	if (operand[0] != 0) {
@@ -155,44 +161,56 @@ public class FracCalc {
     	}
     	return newFrac;
     }
+    //Multiplies two fractions, returns the product.
     public static int [] multFrac(int [] operand1, int [] operand2) { 
     	int numerator = operand1[0] * operand2[0];
     	int denominator = operand1[1] * operand2[1]; 
     	int [] product = {numerator, denominator};
     	return product;
     }
-    public static int [] divFrac(int[] operand1, int[] operand2) { 
+    //Divides the first operand by the second, returns the quotient. 
+    public static int [] divFrac(int[] operand1, int[] operand2) {
+    	//transfer the sign to the denominator before the switch
+    	if (operand2[0] <= -1) {
+    		operand2[1] *= -1;
+    	}
     	int denominator = operand2[1]; //flip the second operand
-    	operand2[1] = operand2[0];
-    	operand2[0] = denominator; 
+    	operand2[1] = Math.abs(operand2[0]);
+    	operand2[0] = denominator;  //This way, the negative is always carried on the numerator
     	int [] product = multFrac(operand1, operand2);
     	return product;
     }
+    //Finds the greatest common factor of an operand's numerator and denominator.
+    //Returns the gcf as an int. 
     public static int gcf(int [] operand) {
     		int count = 1;
     		int factor = 1;
-    		while (count <= Math.min(Math.abs(operand[0]), operand[1])) { //The gcf cannot be greater than the absolute value of smaller number
+    		while (count <= Math.min(Math.abs(operand[0]), operand[1])) { 
+    			//Java had sign problems here if the numerator was negative
     			if (Math.abs(operand[0]%count) == 0 && Math.abs(operand[1]%count) ==0) {
-    				factor = count; //Keep picking up factors until we get to that point. 
+    				factor = count; 
     			}
     			count++;
     		}
     		return (factor);
     	}
+    //This method takes in a nonreduced improper fraction (meaning the numerator and denominator are both divisible by a common factor)
+    //Returns a simplified mixed number (whole, numerator, denominator) of which the numerator and denominator are not both divisible by a common factor.
     public static int [] reduceFrac(int [] operand) {
-    	int [] simpleFrac = new int [3]; //new array to hold the new whole value
+    	int [] simpleFrac = new int [3]; 
     	int whole = operand[0]/operand[1];
     	operand[0] = (operand[0]%operand[1]);
     	if (whole != 0) {
     	operand[0] = Math.abs(operand[0]);
     	}
+   
     	int factor = gcf(operand);
     	int numerator = operand[0]/factor;
-    	int denominator = Math.abs(operand[1]/factor); //Reduced improper faction //if numerator is less than denominator, this will be zero. That's ok
-    			simpleFrac[0] = whole; //remember to filter out whole in produceAnswer
+    	int denominator = Math.abs(operand[1]/factor); 
+    			simpleFrac[0] = whole; 
     			simpleFrac[1] = numerator;
     			simpleFrac[2] = denominator; 
-    		return simpleFrac; //Simplified fraction holding whole, numerator, and denominator. 
+    		return simpleFrac; 
 
     }
     }
