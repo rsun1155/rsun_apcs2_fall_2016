@@ -1,8 +1,10 @@
-
+import java.util.Arrays;
 public class ScratchPaper {
 	public static void main(String [] args) {
-		System.out.println(3%6);
-		System.out.println(5%24);
+		int [] bunchONums = new int [4];
+		System.out.println(Arrays.toString(bunchONums));
+		String [] bunchONulls = new String [3];
+		System.out.println(Arrays.toString(bunchONulls));
 	}
 
 }
