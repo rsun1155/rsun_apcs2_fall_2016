@@ -1,12 +1,10 @@
 import java.util.Arrays;
 public class ScratchPaper {
 	public static void main(String [] args) {
-		int [][] data = new int [4][7];
-		for (int i = 0; i <7; i ++)
-		{
-			data [2][i] = i+1;
-		}
-		System.out.println(Arrays.deepToString(data));
+		String text = "123456";
+		System.out.println(Double.parseDouble(text));
+		String hi = Double.parseDouble(text) + "";
+		System.out.println(hi);
 	}
 
 }
