@@ -1,10 +1,15 @@
-import java.util.Arrays;
+
 public class ScratchPaper {
 	public static void main(String [] args) {
-		String text = "123456";
-		System.out.println(Double.parseDouble(text));
-		String hi = Double.parseDouble(text) + "";
-		System.out.println(hi);
+		System.out.println(starString(4));
 	}
+	public static String starString(int n) {
+	    if (n <= 0)
+	      return "*";
+	    else {
+	      String s = starString(n - 1);
+	      return s + s;
+	    }
+	  }
 
 }
